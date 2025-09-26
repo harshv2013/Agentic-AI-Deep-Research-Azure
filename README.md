@@ -127,11 +127,12 @@ The Gradio UI should automatically open in your browser.
 
 ## 💡 How to Use
 
-1. **Access the UI**: Navigate to `http://127.0.0.1:7860` in your browser
-2. **Enter Research Topic**: Type your research question or topic in the text box
-3. **Run Pipeline**: Click the submit button to start the agentic research process
-4. **Monitor Progress**: Watch the console output for real-time pipeline status
-5. **Review Results**: The generated report will appear in the UI output area
+1. **Access the UI**: Navigate to `http://127.0.0.1:7860` in your browser.
+2. **Enter Research Topic**: Type your research question or topic in the text box.
+3. **Run Pipeline**: Click the submit button to start the agentic research process.
+4. **Monitor Progress**: Watch the console output for real-time pipeline status.
+5. **Review Results**: The generated report will appear in the UI output area.
+          ![UI Screenshot](app-interface.png)
 
 ### Example Research Topics
 - "Latest developments in quantum computing"
