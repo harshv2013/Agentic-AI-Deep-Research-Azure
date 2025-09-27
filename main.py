@@ -15,10 +15,12 @@ def main():
         run_button = gr.Button("Run", variant="primary")
         report = gr.Markdown(label="Report")
         
-        run_button.click(fn=run, inputs=query_textbox, outputs=report)
-        query_textbox.submit(fn=run, inputs=query_textbox, outputs=report)
+        run_button.click(fn=run, inputs=query_textbox, outputs=report, queue=True)
+        query_textbox.submit(fn=run, inputs=query_textbox, outputs=report, queue=True)
 
-    ui.launch(inbrowser=True)
+    # ui.launch(inbrowser=True)
+    ui.launch(server_name="0.0.0.0", server_port=7860)
+
 
 if __name__ == "__main__":
     main()

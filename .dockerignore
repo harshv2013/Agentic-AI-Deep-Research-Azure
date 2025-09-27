@@ -1,0 +1,28 @@
+# Ignore virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Ignore environment variables
+.env
+.env.*
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore build and log files
+*.log
+*.sqlite3
+*.db
+
+# Ignore OS/system files
+.DS_Store
+Thumbs.db
+
+# Ignore git
+.git
+.gitignore

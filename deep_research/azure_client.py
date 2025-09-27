@@ -5,11 +5,11 @@ from openai import AzureOpenAI
 load_dotenv(override=True)
 
 azure_client = AzureOpenAI(
-    api_key=os.getenv("OPENAI_API_KEY"),
-    azure_endpoint=os.getenv("OPENAI_API_BASE"),
-    api_version=os.getenv("OPENAI_API_VERSION"),
+    api_key=os.getenv("openai-api-key"),
+    azure_endpoint=os.getenv("openai-endpoint"),
+    api_version=os.getenv("openai-api-version"),
 )
-DEPLOY = os.getenv("OPENAI_DEPLOYMENT_NAME")
+DEPLOY = os.getenv("openai-deployment-name")
 
 def azure_chat(instructions: str, prompt: str) -> str:
     """Run a chat completion against Azure OpenAI with system + user messages."""
