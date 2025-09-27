@@ -147,16 +147,14 @@ Instead of setting up a virtual environment manually, you can run the project in
 ##### 1. Build the Docker Image
 
 ```bash
-docker build -t deepresearch:local .
+docker build -t deepresearch:latest .
 ```
 
 ##### 2. Run the Container
 
 ```bash
-docker run -it --rm \
-  -p 7860:7860 \
-  --env-file .env \
-  deepresearch:local
+docker run -it --rm -p 7860:7860 --env-file .env deepresearch:latest
+
 ```
 
 * `-p 7860:7860` → maps container port to local port 7860
