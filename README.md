@@ -55,11 +55,13 @@ Agentic-AI-Deep-Research-Azure/
 ## ⚙️ Prerequisites
 
 ### System Requirements
+
 - **Python 3.11** or **3.12** (recommended)
   - ⚠️ Python 3.13 may have compatibility issues with some audio packages used by Gradio
 - **Azure OpenAI** deployment with API access
 
 ### Azure OpenAI Requirements
+
 - Valid Azure OpenAI resource
 - Deployed model (e.g., `gpt-4o-mini` or `gpt-4`)
 - API key and endpoint URL
@@ -70,12 +72,14 @@ Agentic-AI-Deep-Research-Azure/
 ## 🚀 Quick Start
 
 ### 1. Clone the Repository
+
 ```bash
 git clone https://github.com/<your-username>/Agentic-AI-Deep-Research-Azure.git
 cd Agentic-AI-Deep-Research-Azure
 ```
 
 ### 2. Set Up Virtual Environment
+
 ```bash
 # Windows
 python -m venv .venv
@@ -87,11 +91,13 @@ source .venv/bin/activate
 ```
 
 ### 3. Install Dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
 
 ### 4. Configure Environment Variables
+
 ```bash
 # Copy the example environment file
 # Linux / Mac
@@ -102,26 +108,68 @@ copy .env.example .env
 ```
 
 Edit `.env` with your Azure OpenAI credentials:
+
 ```env
-OPENAI_API_KEY=your-azure-api-key-here
-OPENAI_API_BASE=https://your-resource-name.openai.azure.com/
-OPENAI_API_VERSION=2024-06-01-preview
-OPENAI_DEPLOYMENT_NAME=gpt-4o-mini
+openai-api-key=your-azure-api-key-here
+openai-endpoint=https://your-resource-name.openai.azure.com/
+openai-api-version=2024-06-01-preview
+openai-deployment-name=gpt-4o-mini
 ```
 
 **🔒 Security Note:** Never commit your `.env` file. It's already included in `.gitignore`.
 
-### 5. Launch the Application
+<!-- ### 5. Launch the Application
+
 ```bash
 python main.py
 ```
 
 The application will start and display:
+
 ```
 Running on local URL: http://127.0.0.1:7860
 ```
 
-The Gradio UI should automatically open in your browser.
+The Gradio UI should automatically open in your browser. -->
+
+### 5. Launch the Application
+
+#### Option A: Run Locally
+
+```bash
+python main.py
+```
+
+#### Option B: 🐳 Run with Docker (Optional)
+
+Instead of setting up a virtual environment manually, you can run the project inside a Docker container. This is useful for consistent environments and easier deployment.
+
+##### 1. Build the Docker Image
+
+```bash
+docker build -t deepresearch:local .
+```
+
+##### 2. Run the Container
+
+```bash
+docker run -it --rm \
+  -p 7860:7860 \
+  --env-file .env \
+  deepresearch:local
+```
+
+* `-p 7860:7860` → maps container port to local port 7860
+* `--env-file .env` → passes your Azure credentials from `.env`
+
+Once running, open:
+👉 http://127.0.0.1:7860
+
+The application will start and display:
+
+```
+Running on local URL: http://127.0.0.1:7860
+```
 
 ---
 
@@ -132,9 +180,10 @@ The Gradio UI should automatically open in your browser.
 3. **Run Pipeline**: Click the submit button to start the agentic research process.
 4. **Monitor Progress**: Watch the console output for real-time pipeline status.
 5. **Review Results**: The generated report will appear in the UI output area.
-          ![UI Screenshot](app-interface.png)
+   ![UI Screenshot](app-interface.png)
 
 ### Example Research Topics
+
 - "Latest developments in quantum computing"
 - "Impact of AI on healthcare industry"
 - "Sustainable energy solutions for 2024"
@@ -147,30 +196,38 @@ The Gradio UI should automatically open in your browser.
 When you submit a research topic, here's what happens:
 
 ### Stage 1: Planning 🧠
+
 ```
 Planning searches...
 ```
+
 The Planner Agent analyzes your topic and determines optimal search strategies.
 
 ### Stage 2: Research 🔍
+
 ```
 Searching...
 Finished searching
 ```
+
 The Search Agent executes parallel searches (currently mocked) to gather relevant information.
 
 ### Stage 3: Report Generation ✍️
+
 ```
 Writing report...
 ```
+
 The Writer Agent uses Azure OpenAI to synthesize findings into a comprehensive Markdown report.
 
 ### Stage 4: Delivery 📧
+
 ```
 [MOCK EMAIL] Pretending to send email...
 Subject: Research Results
 [MOCK EMAIL] Success
 ```
+
 The Email Agent formats and prepares the report for delivery (currently mocked for safety).
 
 ---
@@ -178,6 +235,7 @@ The Email Agent formats and prepares the report for delivery (currently mocked f
 ## 📋 Dependencies
 
 ### Core Dependencies
+
 ```text
 openai==1.43.0              # Azure OpenAI integration
 gradio==4.44.0              # Web UI framework
@@ -187,6 +245,7 @@ nest_asyncio               # Async compatibility
 ```
 
 ### Optional Dependencies
+
 Consider pinning specific versions in production environments.
 
 ---
@@ -195,17 +254,17 @@ Consider pinning specific versions in production environments.
 
 ### Environment Variables
 
-| Variable | Description | Example |
-|----------|-------------|---------|
-| `OPENAI_API_KEY` | Your Azure OpenAI API key | `sk-...` |
-| `OPENAI_API_BASE` | Azure OpenAI endpoint URL | `https://myresource.openai.azure.com/` |
-| `OPENAI_API_VERSION` | API version | `2024-06-01-preview` |
-| `OPENAI_DEPLOYMENT_NAME` | Model deployment name | `gpt-4o-mini` |
+| Variable                   | Description               | Example                                  |
+| -------------------------- | ------------------------- | ---------------------------------------- |
+| `openai-api-key`         | Your Azure OpenAI API key | `sk-...`                               |
+| `openai-endpoint`        | Azure OpenAI endpoint URL | `https://myresource.openai.azure.com/` |
+| `openai-api-version`     | API version               | `2024-06-01-preview`                   |
+| `openai-deployment-name` | Model deployment name     | `gpt-4o-mini`                          |
 
 ### Customization Options
 
-- **Model Selection**: Change `OPENAI_DEPLOYMENT_NAME` to use different models
-- **API Version**: Update `OPENAI_API_VERSION` for newer API features
+- **Model Selection**: Change `openai-deployment-name` to use different models
+- **API Version**: Update `openai-api-version` for newer API features
 - **Output Format**: Modify `writer_module.py` to customize report structure
 
 ---
@@ -213,6 +272,7 @@ Consider pinning specific versions in production environments.
 ## 🔧 Development & Extension
 
 ### Current Limitations (By Design)
+
 - **Web Search**: Uses mock data to avoid API costs during development
 - **Email Delivery**: Mocked to prevent accidental email sends
 - **Tracing**: OpenAI tracing disabled to avoid Azure compatibility issues
@@ -220,6 +280,7 @@ Consider pinning specific versions in production environments.
 ### Extension Ideas
 
 #### 🌐 Real Web Integration
+
 ```python
 # Replace mock_web_search with real implementation
 def real_web_search(query):
@@ -228,6 +289,7 @@ def real_web_search(query):
 ```
 
 #### 📧 Email Integration
+
 ```python
 # Connect to real email services
 def send_email_sendgrid(report):
@@ -240,6 +302,7 @@ def send_email_smtp(report):
 ```
 
 #### 📊 Enhanced Features
+
 - **Streaming Responses**: Real-time report generation display
 - **Multi-format Export**: PDF, Word, HTML report outputs
 - **Research Templates**: Pre-configured research workflows
@@ -247,6 +310,7 @@ def send_email_smtp(report):
 - **Report Versioning**: Track and compare research iterations
 
 #### ☁️ Cloud Deployment
+
 - **Azure App Service**: Deploy as a web application
 - **Container Apps**: Containerized deployment
 - **Function Apps**: Serverless research triggers
@@ -259,25 +323,30 @@ def send_email_smtp(report):
 ### Common Issues
 
 #### Azure OpenAI Connection
+
 ```bash
 # Error: Unauthorized (401)
 # Solution: Verify your API key and endpoint URL
 ```
 
 #### Python Version Compatibility
+
 ```bash
 # Error: Package installation fails
 # Solution: Use Python 3.11 or 3.12
 ```
 
 #### Gradio UI Issues
+
 ```bash
 # Error: UI doesn't load
 # Solution: Check if port 7860 is available
 ```
 
 ### Debug Mode
+
 Enable verbose logging by modifying `main.py`:
+
 ```python
 import logging
 logging.basicConfig(level=logging.DEBUG)
@@ -288,11 +357,13 @@ logging.basicConfig(level=logging.DEBUG)
 ## 📈 Performance Considerations
 
 ### Cost Optimization
+
 - Mock services reduce Azure OpenAI API calls during development
 - Consider implementing request caching for repeated research topics
 - Monitor token usage for cost control
 
 ### Scalability
+
 - Async processing supports parallel agent execution
 - Stateless design enables horizontal scaling
 - Consider implementing request queuing for high-volume usage
@@ -302,6 +373,7 @@ logging.basicConfig(level=logging.DEBUG)
 ## 🧪 Testing
 
 ### Running Tests
+
 ```bash
 # Unit tests
 python -m pytest tests/
@@ -314,6 +386,7 @@ python test_pipeline.py
 ```
 
 ### Test Coverage
+
 - Agent functionality validation
 - Azure OpenAI integration testing
 - Pipeline orchestration verification
@@ -330,6 +403,7 @@ python test_pipeline.py
 5. **Open** a Pull Request
 
 ### Development Guidelines
+
 - Follow PEP 8 style guidelines
 - Add tests for new features
 - Update documentation
